@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RepoCard from "./repoCard";
+import RepoCard from "./RepoCard";
 
 function ReposSection({ repos, username, loading, error, hasSearched }) {
   const PAGE_SIZE = 5;
