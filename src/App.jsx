@@ -1,5 +1,5 @@
-import ReposSection from "./components/reposSection";
-import SearchSection from "./components/searchSection";
+import ReposSection from "./components/ReposSection";
+import SearchSection from "./components/SearchSection";
 import logo from "./assets/logo.svg";
 import { useState } from "react";
 
