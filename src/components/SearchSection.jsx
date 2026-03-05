@@ -1,4 +1,4 @@
-function SearchSection() {
+function SearchSection({ value, onChange, onSubmit, loading }) {
   return (
     <div className="grid">
       <h1 className="font-inter font-bold text-2xl text-center mb-2.5">
@@ -8,16 +8,22 @@ function SearchSection() {
         Digite o nome de usuário para visualizar todos os repositórios públicos
       </p>
 
-      <div className="flex gap-5 justify-center">
+      <form onSubmit={onSubmit} className="flex gap-5 justify-center">
         <input
           type="text"
+          disabled={loading}
+          value={value}
+          onChange={onChange}
           placeholder="Digite o username do Github..."
           className="w-full rounded-md bg-[#21242C] p-3 font-inter font-medium text-[15px]"
         />
-        <button className="bg-[#3E637B] rounded-md w-32 p-2 font-inter font-medium text-[15px] cursor-pointer text-black ">
-          Buscar
+        <button
+          type="submit"
+          className={`bg-[#3E637B] rounded-md w-32 p-2 font-inter font-medium text-[15px] cursor-pointer text-black ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+        >
+          {loading ? "Buscando..." : "Buscar"}
         </button>
-      </div>
+      </form>
     </div>
   );
 }
