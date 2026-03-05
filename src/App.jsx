@@ -9,6 +9,7 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [searchedUser, setSearchedUser] = useState("");
   const [repos, setRepos] = useState([]);
+  const [queryUser, setQueryUser] = useState("");
 
   function handleChange(e) {
     setSearchedUser(e.target.value);
@@ -20,6 +21,7 @@ function App() {
     const username = searchedUser.trim();
     if (!username) return;
 
+    setQueryUser(username);
     setLoading(true);
     setError("");
     setHasSearched(true);
@@ -33,7 +35,7 @@ function App() {
         if (response.status === 404) {
           throw new Error("Usuário não encontrado.");
         }
-        if (!response.status === 403) {
+        if (response.status === 403) {
           throw new Error(
             "Limites de requisições atingido. Tente novamente mais tarde.",
           );
@@ -43,7 +45,7 @@ function App() {
 
       const data = await response.json();
 
-      data.sort((a, b) => new Date(b.updated_at) - new Date(a.update_at));
+      data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
       setRepos(data);
       console.log(data);
@@ -70,10 +72,11 @@ function App() {
         />
         <ReposSection
           repos={repos}
-          username={searchedUser}
+          username={queryUser}
           loading={loading}
           error={error}
           hasSearched={hasSearched}
+          key={queryUser}
         />
       </div>
     </div>

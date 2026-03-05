@@ -1,7 +1,7 @@
 import star from "../assets/star.svg";
 import ball from "../assets/ball.svg";
 
-function formatUpdateAt(dateString) {
+function formatUpdatedAt(dateString) {
   if (!dateString) return "";
   const date = new Date(dateString);
   return date.toLocaleDateString("pt-BR", {
@@ -26,7 +26,7 @@ function RepoCard({ repo }) {
             {repo.stargazers_count}
           </span>
           <span className="ml-auto">
-            Atualizado em {formatUpdateAt(repo.updated_at)}
+            Atualizado em {formatUpdatedAt(repo.updated_at)}
           </span>
         </div>
       </div>
